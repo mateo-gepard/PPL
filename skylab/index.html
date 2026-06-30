@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyLab · PPL Aerodynamik — Interaktives Lernsystem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="brand" id="brandHome" title="Zur Übersicht">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30"><path d="M4 26 L20 7 L36 26 L20 19 Z" fill="currentColor"/><path d="M20 19 L20 33" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>SkyLab</b><small>PPL · Principles of Flight</small></span>
+    </div>
+    <div class="overall-progress">
+      <div class="op-row"><span>Fortschritt</span><span id="overallPct">0%</span></div>
+      <div class="op-bar"><i id="overallBar"></i></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="side-foot">
+      <button id="resetBtn" class="ghost-btn" title="Fortschritt zurücksetzen">Fortschritt zurücksetzen</button>
+      <div class="src">081 · Aerodynamik · EASA PPL(A)</div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main id="main">
+    <header id="topbar">
+      <button id="menuToggle" class="icon-btn" aria-label="Menü">☰</button>
+      <div id="crumb"></div>
+      <div class="top-actions">
+        <button id="examBtn" class="pill-btn accent">Prüfungssimulator</button>
+      </div>
+    </header>
+    <div id="view"></div>
+  </main>
+</div>
+
+<!-- Module loader. Loads core + units in order. On http(s) a cache-buster
+     guarantees the freshest code; on file:// it loads plain paths so that
+     opening index.html directly keeps working. -->
+<script>
+(function(){
+  var files=[
+    'js/core/physics.js','js/core/plot.js','js/core/scene.js','js/core/ui.js',
+    'js/core/quiz.js','js/core/app.js',
+    'js/units/u01_atmosphere.js','js/units/u02_bernoulli.js','js/units/u03_airspeed.js',
+    'js/units/u04_airfoil.js','js/units/u05_lift.js','js/units/u06_drag.js',
+    'js/units/u07_glide.js','js/units/u08_highlift.js','js/units/u09_controls.js',
+    'js/units/u10_turn.js','js/units/u11_stall.js'
+  ];
+  var bust = (location.protocol.indexOf('http')===0) ? ('?v='+Date.now()) : '';
+  var i=0;
+  (function next(){
+    if(i>=files.length){ App.boot(); return; }
+    var s=document.createElement('script');
+    s.src=files[i++]+bust; s.async=false;
+    s.onload=next;
+    s.onerror=function(){ console.error('Laden fehlgeschlagen:', s.src); next(); };
+    document.head.appendChild(s);
+  })();
+})();
+</script>
+</body>
+</html>
