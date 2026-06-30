@@ -1,29 +1,54 @@
-# PPL Aerodynamik Simulator
+# SkyLab — PPL Aerodynamik
 
-Interaktives Light-Mode-Lernsystem fuer PPL(A) Principles of Flight / Aerodynamik 081.
+Ein vollständiges interaktives Lernsystem zur **EASA 081 „Principles of Flight"** (PPL-Aerodynamik).
+11 Lerneinheiten mit **physikalisch echten Simulationen**, verknüpft mit dem Prüfungsstoff, plus
+Quizzes und einem Prüfungssimulator.
 
-## Start
+## Starten
 
-Oeffne `index.html` direkt im Browser. Die App ist statisch und braucht keine Installation.
+**Empfohlen (mit Speichern des Fortschritts):**
 
-## Inhalt
+Doppelklick auf **`start.command`** — startet einen lokalen Server und öffnet den Browser.
 
-- 9 PDF-verknuepfte Einheiten aus dem Stoff:
-  Grundlagen, Profilgeometrie, Auftrieb, Widerstand, Polare, Klappen, Steuerung, Kurvenflug, Grenzzustaende.
-- 3D-Simulationen dort, wo Raeumlichkeit didaktisch hilft:
-  Fluegel/Profil, Auftrieb, Randwirbel, Klappen, Steuerachsen, Kurvenflug, Stall/Trudeln/Slip.
-- 2D-Diagramme dort, wo PPL-Pruefungsfragen Diagrammlesen verlangen:
-  Bernoulli/Kontinuitaet, ca-alpha, Widerstandskurve, Polaren, Geschwindigkeitspolare.
-- Simulationsmissionen pro Einheit.
-- Dynamische Erklaerbox "Was gerade passiert".
-- Quick Checks pro Einheit.
-- 30-Fragen-Pruefungsmodus mit Schwachstellenanalyse.
-- Lokaler Fortschritt via `localStorage`.
+Oder im Terminal:
 
-## Konzeptpapiere
+```bash
+python3 -m http.server 8755
+```
 
-Die Konzeptpapiere liegen in `concept-papers/` und sind in jeder Einheit per Link erreichbar. Sie beschreiben Lernziel, Visualisierung, Interaktionen, Modellgrenzen, Pruefungsfallen und Abnahmekriterien.
+Dann im Browser öffnen: <http://localhost:8755>
 
-## Modellhinweis
+**Schnell (ohne Server):** `index.html` direkt im Browser öffnen. Alle Simulationen funktionieren;
+nur das dauerhafte Speichern des Lernfortschritts braucht den Server (oben).
 
-Die Simulationen sind didaktische Naeherungsmodelle fuer PPL-Lernen. Sie ersetzen kein Flughandbuch, keine Musterunterweisung und keine echten Leistungsdaten eines Luftfahrzeugs.
+## Die 11 Einheiten
+
+**Grundlagen der Strömung**
+1. Atmosphäre & Staudruck — ISA-Modell, ρ/p/T mit der Höhe, q = ½ρv², IAS↔TAS
+2. Kontinuität & Bernoulli — Venturi mit Strömung & Druck
+3. Der Fahrtmesser — Pitot-Statik, IAS/CAS/TAS, Instrument
+
+**Auftrieb, Widerstand & Polare**
+4. Profil & Strömung — **echte Joukowski-Potentialströmung** (Stromlinien, Staupunkte, Druck, Zirkulation)
+5. Auftrieb & Formel — A = c_A·F·½ρv², c_A-α-Kurve, Kräftegleichgewicht
+6. Widerstand & Polare — schädlicher/induzierter Widerstand, Gesamtpolare, beste Gleitzahl
+7. Geschwindigkeitspolare & Gleiten — bestes Gleiten, geringstes Sinken, Wind, Notlandung
+8. Auftriebshilfen — Klappen & Vorflügel, Verschiebung der c_A-Kurve, V_S
+
+**Steuerung & Flugzustände**
+9. Steuerung & Achsen — 3D-Flugzeug, Rollen/Nicken/Gieren, Primär- & Sekundärwirkung
+10. Kurvenflug & Lastvielfaches — n = 1/cos φ, V-n-Diagramm, V_A, Grenzlasten
+11. Überziehen & Trudeln — Strömungsablösung, kritischer Anstellwinkel, Autorotation
+
+Jede Einheit hat: **Simulation** · **Theorie** · **Quiz**. Dazu ein **Prüfungssimulator**
+(20 gemischte Fragen, 75% zum Bestehen).
+
+## Technik
+
+Reines HTML/CSS/JavaScript, kein Build nötig. Alle Simulationen rechnen mit echten
+physikalischen Modellen (ISA-Atmosphäre, Bernoulli/Kontinuität, konforme Joukowski-Abbildung
+mit Kutta-Bedingung, Auftriebs-/Widerstandspolare, Lastvielfaches, Geschwindigkeitspolare).
+
+## Vorherige Version
+
+Die vorherige PPL-Trainer-Version bleibt im Repository unter `legacy/` erhalten.

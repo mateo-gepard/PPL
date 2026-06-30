@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PPL Aerodynamik Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Lerneinheiten">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">081</div>
+          <div>
+            <strong>PPL Aerodynamik</strong>
+            <span>Simulator & Pruefungstrainer</span>
+          </div>
+        </div>
+        <label class="search">
+          <span>Suche</span>
+          <input id="searchInput" type="search" placeholder="z. B. Bernoulli, Klappen, n">
+        </label>
+        <nav id="unitNav" class="unit-nav"></nav>
+        <div class="sidebar-footer">
+          <div class="progress-mini">
+            <span>Gesamtmastery</span>
+            <strong id="overallMastery">0%</strong>
+          </div>
+          <button id="resetProgress" class="ghost-button" type="button">Fortschritt reset</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Quelle: PPL(A) Principles of Flight, 2024 CAT Europe</p>
+            <h1 id="appTitle">Interaktives Simulationssystem</h1>
+          </div>
+          <div class="top-actions">
+            <button id="examButton" class="primary-button" type="button">Pruefungsmodus</button>
+            <button id="atlasButton" class="secondary-button" type="button">Stoffnetz</button>
+          </div>
+        </header>
+
+        <section id="unitView" class="unit-view" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <div id="modalRoot"></div>
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
